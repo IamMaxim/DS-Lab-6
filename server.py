@@ -16,7 +16,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             if os.path.exists(filename):
                 counter = 1
                 while os.path.exists(filename + '_copy' + str(counter)):
-                        couter += 1
+                        counter += 1
                 filename += '_copy' + str(counter)
 
             f = open(filename, 'wb+')
