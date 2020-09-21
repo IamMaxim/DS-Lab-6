@@ -25,7 +25,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.sendall(filesize.to_bytes(4, 'big'))
         sent = 0
         while True:
-            print('\rSent %i out of %i bytes of file %s    ' % (sent, filesize, filename), end='')
+            print('\rSent %i out of %i bytes (%i%%) of file %s    ' % (sent, filesize, 100 * sent / filesize, filename), end='')
             b = f.read(1024)
             sock.sendall(b)
             sent += len(b)
