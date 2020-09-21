@@ -1,4 +1,5 @@
 import socketserver
+import os
 
 
 class MyTCPHandler(socketserver.BaseRequestHandler):
@@ -11,7 +12,14 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
             print('Filename of length %i received: %s' % (filename_len, filename))
 
-            f = open('received/' + filename, 'wb+')
+            filename = 'received/' + filename
+            if os.path.exists(filename):
+                counter = 1
+                while os.path.exists(filename + '_copy' + str(counter)):
+                        couter += 1
+                filename += '_copy' + str(counter)
+
+            f = open(filename, 'wb+')
 
             filesize = int.from_bytes(self.request.recv(4), 'big')
             received = 0
