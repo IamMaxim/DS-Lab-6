@@ -12,6 +12,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
             print('Filename of length %i received: %s' % (filename_len, filename))
 
+            filename = os.path.basename(filename)
             filename = 'received/' + filename
             if os.path.exists(filename):
                 counter = 1
